@@ -1,0 +1,68 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xmlns:context="http://www.springframework.org/schema/context"
+xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:tx="http://www.springframework.org/schema/tx"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+
+http://www.springframework.org/schema/context
+http://www.springframework.org/schema/context/spring-context-3.1.xsd
+http://www.springframework.org/schema/tx 
+     http://www.springframework.org/schema/tx/spring-tx-3.1.xsd">
+ 
+	<!-- Database Configuration -->
+	<import resource="../database/Hibernate.xml"/>
+ 
+	<!-- Auto scan the components -->
+		
+	
+	<bean id="txManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+    
+    
+	
+	<bean id = "abstractGenericDao" 
+			class="com.shomun.fish.core.framework.dao.hibernate.GenericHibernateDAOImpl"
+			abstract="true">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	<bean id="abstractDao" 	
+			class="org.springframework.aop.framework.ProxyFactoryBean" 
+			abstract="true">
+		
+	</bean>
+	<bean id="userDao" parent="abstractDao">
+		<property name="proxyInterfaces">
+			<value>com.shomun.fish.core.data.dao.UserDAO</value>
+		</property>
+		<property name="target">
+			<bean parent="abstractGenericDao">
+				<constructor-arg>
+					<value>com.shomun.fish.core.data.entity.User</value>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="shopDao" parent="abstractDao">
+		<property name="proxyInterfaces">
+			<value>com.shomun.fish.core.data.dao.ShopDAO</value>
+		</property>
+		<property name="target">
+			<bean parent="abstractGenericDao">
+				<constructor-arg>
+					<value>com.shomun.fish.core.data.entity.Shop</value>
+				</constructor-arg>
+			</bean>
+		</property>
+	</bean>
+	<!-- 
+	<bean id="userServiceManager" class="com.shomun.fish.core.service.UserServiceImpl">
+		<property name="userDao"></property>
+	</bean>		
+	-->
+	
+ 
+</beans>
