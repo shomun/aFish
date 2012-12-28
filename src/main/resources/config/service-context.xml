@@ -27,6 +27,7 @@ http://www.springframework.org/schema/tx
 	
 	<bean id="shopServiceManager" class="com.shomun.fish.core.service.ShopServiceManagerImpl">
 		<property name="shopDao" ref="shopDao"/>
+		
 	</bean>
 	
  

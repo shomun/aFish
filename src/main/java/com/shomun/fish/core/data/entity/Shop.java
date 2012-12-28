@@ -46,6 +46,10 @@ public class Shop extends EntityBase {
 	@OneToMany(cascade =CascadeType.ALL,fetch = FetchType.EAGER)
 	@JoinTable(name="m_shop_address_mapping",joinColumns={@JoinColumn(name="shop_id")},inverseJoinColumns={@JoinColumn(name="address_id")})
 	private List<Address> addresses;
+	
+	@OneToMany(cascade =CascadeType.ALL,fetch = FetchType.LAZY)
+	@JoinTable(name="m_shop_cactegory_mapping",joinColumns={@JoinColumn(name="shop_id")},inverseJoinColumns={@JoinColumn(name="category_id")})
+	private List<Category> categoies;
 
 	public long getId() {
 		return id;
@@ -115,6 +119,22 @@ public class Shop extends EntityBase {
 			this.addresses = new ArrayList<Address>();
 		}
 		this.addresses.add(address);
+	}
+
+	public List<Category> getCategoies() {
+		return categoies;
+	}
+
+	public void setCategoies(List<Category> categoies) {
+		this.categoies = categoies;
+	}
+	
+	
+	public void addCategory(Category category) {
+		if(this.categoies == null){
+			this.categoies = new ArrayList<Category>();
+		}
+		this.categoies.add(category);
 	}
 	
 }

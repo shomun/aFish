@@ -12,9 +12,9 @@ import com.shomun.fish.core.data.entity.EntityBase;
 public class Category extends EntityBase {
 	
 	@Id
-	@GeneratedValue
+//	@GeneratedValue
 	@Column(name="id")
-	private long id;
+	private String id;
 	
 	@Column(name="name")
 	private String name;
@@ -24,13 +24,13 @@ public class Category extends EntityBase {
 	private String description;
 	
 	@Column(name="parent_id")
-	private long parentId;
+	private String parentId;
 
-	public long getId() {
+	public String getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -50,11 +50,11 @@ public class Category extends EntityBase {
 		this.description = description;
 	}
 
-	public long getParentId() {
+	public String getParentId() {
 		return parentId;
 	}
 
-	public void setParentId(long parentId) {
+	public void setParentId(String parentId) {
 		this.parentId = parentId;
 	}
 	

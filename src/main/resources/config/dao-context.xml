@@ -28,6 +28,13 @@ http://www.springframework.org/schema/tx
 			abstract="true">
 		<property name="sessionFactory" ref="sessionFactory"/>
 	</bean>
+	
+	<bean id = "generelDao" 
+			class="com.shomun.fish.core.framework.dao.hibernate.GenerelHibernateDAOImpl"
+			abstract="true">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
+	
 	<bean id="abstractDao" 	
 			class="org.springframework.aop.framework.ProxyFactoryBean" 
 			abstract="true">

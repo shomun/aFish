@@ -6,6 +6,7 @@ import com.shomun.fish.core.data.dao.CategoryDAO;
 import com.shomun.fish.core.data.dao.ProductDAO;
 import com.shomun.fish.core.data.dao.ShopDAO;
 import com.shomun.fish.core.data.entity.Category;
+import com.shomun.fish.core.data.entity.CategoryBasedType;
 import com.shomun.fish.core.data.entity.Product;
 import com.shomun.fish.core.data.entity.Shop;
 import com.shomun.fish.core.exception.ApplicationException;
@@ -85,6 +86,24 @@ public class ShopServiceManagerImpl extends AbstractService implements ShopServi
 
 	public void deleteProduct(long productId) throws SystemException,
 			ApplicationException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void addCategoryBaseType(CategoryBasedType categoryBaseType)
+			throws SystemException, ApplicationException {
+		this.categoryDao.save(categoryBaseType);
+		
+	}
+
+	public void updateCategoryBaseType(CategoryBasedType categoryBaseType)
+			throws SystemException, ApplicationException {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void deleteCategoryBaseType(String categoryBaseTypeId)
+			throws SystemException, ApplicationException {
 		// TODO Auto-generated method stub
 		
 	}
